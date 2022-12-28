@@ -9,6 +9,7 @@ use crate::{debug_render, ui};
 use crate::{graphics::GraphicsManager, harness::RunState};
 
 use na::{self, Point2, Point3, Vector3};
+use rapier::control::BasicKinematicCharacterController;
 #[cfg(feature = "dim3")]
 use rapier::control::DynamicRayCastVehicleController;
 use rapier::control::KinematicCharacterController;
@@ -759,7 +760,7 @@ impl<'a, 'b, 'c, 'd, 'e, 'f> Testbed<'a, 'b, 'c, 'd, 'e, 'f> {
             desired_movement *= speed;
             desired_movement -= Vector::y() * speed;
 
-            let controller = KinematicCharacterController::default();
+            let controller = BasicKinematicCharacterController::default();
             let phx = &mut self.harness.physics;
             let character_body = &phx.bodies[character_handle];
             let character_collider = &phx.colliders[character_body.colliders()[0]];

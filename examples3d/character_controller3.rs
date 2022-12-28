@@ -1,3 +1,5 @@
+use std::f32::consts::TAU;
+
 use rapier3d::prelude::*;
 use rapier_testbed3d::Testbed;
 
@@ -74,7 +76,7 @@ pub fn init_world(testbed: &mut Testbed) {
      */
     let slope_angle = 0.2;
     let slope_size = 2.0;
-    let collider = ColliderBuilder::cuboid(slope_size, ground_height, slope_size)
+    let collider = ColliderBuilder::cuboid(slope_size, ground_height, ground_size)
         .translation(vector![ground_size + slope_size, -ground_height + 0.4, 0.0])
         .rotation(Vector::z() * slope_angle);
     colliders.insert(collider);
@@ -91,6 +93,18 @@ pub fn init_world(testbed: &mut Testbed) {
             0.0
         ])
         .rotation(Vector::z() * impossible_slope_angle);
+    colliders.insert(collider);
+
+    /*
+     * Create a vertical wall.
+     */
+    let collider = ColliderBuilder::cuboid(slope_size, ground_height * 2., ground_size)
+        .translation(vector![
+            ground_size + slope_size * 2.0 + impossible_slope_size - 0.9,
+            -ground_height + 4.3,
+            0.0
+        ])
+        .rotation(Vector::z() * (TAU / 4.));
     colliders.insert(collider);
 
     /*
