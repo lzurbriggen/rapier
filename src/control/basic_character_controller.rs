@@ -31,7 +31,7 @@ impl Default for BasicKinematicCharacterController {
     fn default() -> Self {
         Self {
             up: Vector::y_axis(),
-            offset: CharacterLength::Relative(0.11),
+            offset: CharacterLength::Relative(0.01),
             min_slope_slide_angle: Real::frac_pi_4(),
             snap_to_ground: Some(CharacterLength::Relative(0.2)),
         }
