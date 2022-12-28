@@ -46,7 +46,7 @@ impl CharacterLength {
         }
     }
 
-    fn eval(self, value: Real) -> Real {
+    pub fn eval(self, value: Real) -> Real {
         match self {
             Self::Relative(x) => value * x,
             Self::Absolute(x) => x,
